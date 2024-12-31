@@ -8,7 +8,9 @@
         body {
             margin: 0;
             overflow: hidden;
-            background: linear-gradient(to bottom, #001f3f, #001f5f);
+            background: linear-gradient(45deg, #0d0d0d, #1a1a1a, #333333, #4d4d4d);
+            background-size: 300% 300%;
+            animation: gradient-animation 15s ease infinite;
             height: 100vh;
             font-family: Arial, sans-serif;
             color: white;
@@ -16,6 +18,12 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         #fireworksCanvas {
@@ -29,6 +37,11 @@
             text-align: center;
             animation: fade-in 3s;
             z-index: 10;
+        }
+
+        #message, #countdown {
+            text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffea00, 0 0 40px #ffea00, 0 0 50px #ffea00, 0 0 75px #ffea00;
+            color: white;
         }
 
         #countdown {
