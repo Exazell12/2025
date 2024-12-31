@@ -8,7 +8,7 @@
         body {
             margin: 0;
             overflow: hidden;
-            background: linear-gradient(45deg, #0d0d0d, #1a1a1a, #333333, #4d4d4d);
+            background: linear-gradient(45deg, #000000, #1a1a2e, #0f3460, #16213e);
             background-size: 300% 300%;
             animation: gradient-animation 15s ease infinite;
             height: 100vh;
@@ -33,29 +33,29 @@
         }
 
         .text {
-            font-size: 2rem;
+            font-size: 1.5rem;
             text-align: center;
             animation: fade-in 3s;
             z-index: 10;
         }
 
         #message, #countdown {
-            text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffea00, 0 0 40px #ffea00, 0 0 50px #ffea00, 0 0 75px #ffea00;
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffea00;
             color: white;
         }
 
         #countdown {
-            font-size: 3rem;
-            margin-top: 20px;
+            font-size: 2rem;
+            margin-top: 10px;
             font-weight: bold;
         }
 
         @media (min-width: 768px) {
             .text {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
             #countdown {
-                font-size: 4rem;
+                font-size: 3rem;
             }
         }
 
@@ -79,7 +79,6 @@
     <audio id="newYearAudio" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
 
     <script>
-        // JavaScript setup for fireworks
         const canvas = document.getElementById('fireworksCanvas');
         const ctx = canvas.getContext('2d');
         const newYearAudio = document.getElementById('newYearAudio');
@@ -98,12 +97,12 @@
 
         function createFirework(x, y, color) {
             const particles = [];
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 30; i++) {
                 particles.push({
                     x,
                     y,
-                    vx: random(-3, 3),
-                    vy: random(-3, 3),
+                    vx: random(-2, 2),
+                    vy: random(-2, 2),
                     alpha: 1,
                     color
                 });
@@ -118,7 +117,7 @@
                 fw.forEach(p => {
                     p.x += p.vx;
                     p.y += p.vy;
-                    p.alpha -= 0.02;
+                    p.alpha -= 0.03;
                 });
                 fireworks[index] = fw.filter(p => p.alpha > 0);
             });
@@ -134,7 +133,7 @@
                     ctx.globalAlpha = p.alpha;
                     ctx.fillStyle = p.color;
                     ctx.beginPath();
-                    ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
                     ctx.fill();
                 });
             });
@@ -158,11 +157,10 @@
             const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
             const color = colors[Math.floor(random(0, colors.length))];
             fireworks.push(createFirework(x, y, color));
-        }, 800);
+        }, 1200);
 
         loop();
 
-        // Countdown Timer
         const countdownElement = document.getElementById('countdown');
         const messageElement = document.getElementById('message');
         const targetDate = new Date('January 1, 2025 00:00:00').getTime();
